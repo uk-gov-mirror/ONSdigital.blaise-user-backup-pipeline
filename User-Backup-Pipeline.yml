@@ -14,7 +14,7 @@ variables:
  - name: SurveyType
    value: OPN
  - name: DatabaseFileLocation
-   value: C:\Blaise5\Settings\Credentials.db
+   value: D:\Blaise5\Settings\Credentials.db
 
 stages:
  - stage: BackupUsers
