@@ -13,14 +13,12 @@ variables:
    value: gusty
  - name: SurveyType
    value: OPN
- - name: DatabaseFileLocation
-   value: D:\Blaise5\Settings\Credentials.db
 
 stages:
  - stage: BackupUsers
    displayName: BackupUsers
    variables:
-      ENV_RESTAPI_URL : http://localhost:90
+      ENV_DATABASE_FILE_LOCATION : D:\Blaise5\Settings\Credentials.db
    jobs:
      - deployment: BackupUsers
        environment: ${{ parameters.Environment }}
