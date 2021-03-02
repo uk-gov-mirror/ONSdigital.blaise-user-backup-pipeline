@@ -1,0 +1,36 @@
+parameters:
+  - name : VarGroup
+    displayName: Variable Group
+  - name: Environment
+    displayName: Environment to use
+
+trigger:
+- none
+
+variables:
+ - group: ${{ parameters.VarGroup }}
+ - name: ServerParkName
+   value: gusty
+ - name: SurveyType
+   value: OPN
+ - name: DatabaseFileLocation
+   value: C:\Blaise5\Settings\Credentials.db
+
+stages:
+ - stage: BackupUsers
+   displayName: BackupUsers
+   variables:
+      ENV_RESTAPI_URL : http://localhost:90
+   jobs:
+     - deployment: BackupUsers
+       environment: ${{ parameters.Environment }}
+       strategy:
+        runOnce:
+          deploy: 
+           steps:
+             - checkout: self
+           
+             - task: PowerShell@2
+               displayName: Backup Users
+               inputs:
+                 filePath: '$(Agent.BuildDirectory)/s/scripts/BackUpDatabase.ps1'
