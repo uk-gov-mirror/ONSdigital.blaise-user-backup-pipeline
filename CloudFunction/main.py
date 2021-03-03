@@ -23,7 +23,7 @@ def getStatus(pipeline_id):
     return last_run["state"], run_result
 
 
-def dataDelivery(data, context):
+def userBackup(data, context):
     variables = {"VarGroup": var_group_name, "Environment": env_name}
     data = {"templateParameters": variables}
     request = requests.post(
