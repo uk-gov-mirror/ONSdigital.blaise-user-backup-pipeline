@@ -21,7 +21,10 @@ stages:
       ENV_DATABASE_FILE_LOCATION : D:\Blaise5\Settings\Credentials.db
    jobs:
      - deployment: BackupUsers
-       environment: ${{ parameters.Environment }}
+       environment:
+         name: ${{parameters.Environment}}
+         resourceType: virtualMachine
+         tags: blaise
        strategy:
         runOnce:
           deploy: 
