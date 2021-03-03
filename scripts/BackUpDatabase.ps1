@@ -7,4 +7,4 @@ Write-Host "HEllo "
 Write-Host "$ENV_BUCKET_NAME"
 
 scripts/tools/sqlite3.exe $env:ENV_DATABASE_FILE_LOCATION ".clone Credentials-$(Get-Date -Format "dd-MM-yyyy-HH-mm").db"
-gsutil cp *.db gs://$ENV_BUCKET_NAME
+gsutil cp *.db gs://$env:ENV_BUCKET_NAME
