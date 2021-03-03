@@ -19,7 +19,6 @@ stages:
    displayName: BackupUsers
    variables:
       ENV_DATABASE_FILE_LOCATION : D:\Blaise5\Settings\Credentials.db
-      ENV_BUCKET_NAME : ons-blaise-v2-dev-dqs
    jobs:
      - deployment: BackupUsers
        environment:

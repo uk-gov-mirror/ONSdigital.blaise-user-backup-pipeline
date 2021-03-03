@@ -10,7 +10,7 @@ var_group_name = os.getenv("var_group_name")
 
 def getStatus(pipeline_id):
     request = requests.get(
-        f"https://dev.azure.com/blaise-gcp/csharp/_apis/pipelines/46/runs/{pipeline_id}?api-version=6.0-preview.1",
+        f"https://dev.azure.com/blaise-gcp/csharp/_apis/pipelines/49/runs/{pipeline_id}?api-version=6.0-preview.1",
         auth=("", pat_token),
         headers={"content-type": "application/json"},
     )
@@ -22,11 +22,12 @@ def getStatus(pipeline_id):
 
     return last_run["state"], run_result
 
+
 def dataDelivery(data, context):
     variables = {"VarGroup": var_group_name, "Environment": env_name}
     data = {"templateParameters": variables}
     request = requests.post(
-        "https://dev.azure.com/blaise-gcp/csharp/_apis/pipelines/46/runs?api-version=6.0-preview.1",
+        "https://dev.azure.com/blaise-gcp/csharp/_apis/pipelines/49/runs?api-version=6.0-preview.1",
         auth=("", pat_token),
         data=json.dumps(data),
         headers={"content-type": "application/json"},
@@ -53,4 +54,3 @@ def dataDelivery(data, context):
         time.sleep(30)
 
     print("Result returned")
-    
