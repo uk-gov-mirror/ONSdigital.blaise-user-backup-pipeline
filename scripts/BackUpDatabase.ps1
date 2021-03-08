@@ -5,6 +5,9 @@
 Write-Host "Database location var: ($env:ENV_DATABASE_FILE_LOCATION)"
 Write-Host "Backup Bucket var: ($env:ENV_BLAISE_BACKUP_BUCKET)"
 
+$DB_FILES = Get-ChildItem $env:ENV_DATABASE_FILE_LOCATION -file *.db
+Write-Host "Files to Backup - $DB_FILES"
+
 $date = Get-Date -Format "dd-MM-yyyy-HH:mm:ss"
 
 ForEach ($Result in $DB_FILES) {
@@ -16,4 +19,5 @@ ForEach ($Result in $DB_FILES) {
     gsutil cp $Result gs://$env:ENV_BLAISE_BACKUP_BUCKET/$date/
 
     Remove-Item $Result
+    Write-Host "-------------------------------------"
 }
