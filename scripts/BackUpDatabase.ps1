@@ -8,7 +8,8 @@ Write-Host "Backup Bucket var: ($env:ENV_BLAISE_BACKUP_BUCKET)"
 $DB_FILES = Get-ChildItem $env:ENV_DATABASE_FILE_LOCATION -file *.db
 Write-Host "Files to Backup - $DB_FILES"
 
-$date = Get-Date -Format "dd-MM-yyyy-HH:mm:ss"
+$date = Get-Date -Format "dd-MM-yyyy"
+$time = Get-Date -Format "HH:mm:ss"
 
 ForEach ($Result in $DB_FILES) {
     Write-Host "Backing up file - $Result"
@@ -16,7 +17,7 @@ ForEach ($Result in $DB_FILES) {
 
     scripts/tools/sqlite3.exe $env:ENV_DATABASE_FILE_LOCATION$Result ".clone $Result"
 
-    gsutil cp $Result gs://$env:ENV_BLAISE_BACKUP_BUCKET/$date/
+    gsutil cp $Result gs://$env:ENV_BLAISE_BACKUP_BUCKET/$date/$time/
 
     Remove-Item $Result
     Write-Host "-------------------------------------"
