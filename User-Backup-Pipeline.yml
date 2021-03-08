@@ -18,7 +18,7 @@ stages:
  - stage: BackupUsers
    displayName: BackupUsers
    variables:
-      ENV_DATABASE_FILE_LOCATION : D:\Blaise5\Settings\Credentials.db
+      ENV_DATABASE_FILE_LOCATION : D:\Blaise5\Settings\
    jobs:
      - deployment: BackupUsers
        environment:
