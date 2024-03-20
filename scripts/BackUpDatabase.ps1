@@ -2,6 +2,9 @@
 # Backup Users pipeline script
 ###############################
 
+Write-Host "Ensure we are authenticated with the correct service account"
+gcloud config set account $env:ENV_VM_SERVICEACCOUNT
+
 Write-Host "Database location var: ($env:ENV_DATABASE_FILE_LOCATION)"
 Write-Host "Backup Bucket var: ($env:ENV_BLAISE_BACKUP_BUCKET)"
 
