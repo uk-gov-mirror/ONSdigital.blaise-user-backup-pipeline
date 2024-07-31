@@ -1,8 +1,9 @@
-﻿Write-Host "Ensure we are authenticated with the correct service account"
-gcloud config set account $env:ENV_VM_SERVICEACCOUNT
+﻿Write-Host "VM service account env var: ($env:ENV_VM_SERVICEACCOUNT)"
+Write-Host "SQLite databases location env var: ($env:ENV_DATABASE_FILE_LOCATION)"
+Write-Host "Backup bucket env var: ($env:ENV_BLAISE_BACKUP_BUCKET)"
 
-Write-Host "Database location var: ($env:ENV_DATABASE_FILE_LOCATION)"
-Write-Host "Backup Bucket var: ($env:ENV_BLAISE_BACKUP_BUCKET)"
+Write-Host "Ensure we are authenticated with the correct service account"
+gcloud config set account $env:ENV_VM_SERVICEACCOUNT
 
 $DB_FILES = Get-ChildItem $env:ENV_DATABASE_FILE_LOCATION -file *.db
 Write-Host "Files to Backup - $DB_FILES"
