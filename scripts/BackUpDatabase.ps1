@@ -18,7 +18,7 @@ ForEach ($Result in $DB_FILES) {
     Write-Host "Backing up file - $Result"
 
     Write-Host "Cloning database file..."
-    scripts/tools/sqlite3.exe "$env:ENV_DATABASE_FILE_LOCATION$Result" ".clone $Result"
+    scripts/tools/sqlite3.exe "$env:ENV_DATABASE_FILE_LOCATION$Result" ".clone '$Result'"
 
     Write-Host "Uploading file to GCS..."
     Write-Host "Source file path: $Result"
