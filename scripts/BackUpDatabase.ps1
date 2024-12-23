@@ -23,7 +23,7 @@ ForEach ($Result in $DB_FILES) {
     Write-Host "Uploading file to GCS..."
     Write-Host "Source file path: $Result"
     Write-Host "Destination GCS path: gs://$env:ENV_BLAISE_BACKUP_BUCKET/$year/$month/$day/$servertime/"
-    gsutil cp "$Result" "gs://$env:ENV_BLAISE_BACKUP_BUCKET/$year/$month/$day/$servertime/"
+    gsutil cp -LiteralPath "$Result" "gs://$env:ENV_BLAISE_BACKUP_BUCKET/$year/$month/$day/$servertime/"
 
     Write-Host "Removing temporary file..."
     Remove-Item $Result
